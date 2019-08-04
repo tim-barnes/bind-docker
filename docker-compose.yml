@@ -1,0 +1,49 @@
+version: '2'
+
+services:
+  ns1:
+    restart: always
+    image: sameersbn/bind:9.11.3-20190706
+    ports:
+    - "5053:53/udp"
+    - "5053:53/tcp"
+    - "10000:10000/tcp"
+    volumes:
+    - ./dns/data:/data
+    networks:
+      things:
+        ipv4_address: 10.21.0.3
+
+
+  kermit:
+    build: .
+    command: sleep infinity
+    networks:
+      - things
+    dns:
+      - 10.21.0.3
+
+  piggy:
+    build: .
+    command: "sleep infinity"
+    networks:
+      - things
+    dns:
+      - 10.21.0.3
+
+  gonzo:
+    build: .
+    command: sleep infinity
+    networks:
+      - things
+    dns:
+      - 10.21.0.3
+
+
+networks:
+  things:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.21.0.0/16
+         gateway: 10.21.0.1
