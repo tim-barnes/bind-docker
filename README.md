@@ -48,15 +48,15 @@ dig @localhost -p 5053 kermit.muppets.things
 
 ## Goal 3.1 - Public keys in DNS
 
--[ ] Basic webserivce setup
--[ ] Messages between services using `ns1`
+-[x] Basic webservice setup
+-[x] Messages between services using `ns1`
 -[ ] Add public keys to zone file
 -[ ] Fetch public keys using python and DNS lookup
 -[ ] Encrypt message payload to destination
 -[ ] Decrypt at destination
 
 ### Tests
--[ ] Services work - can communicate with each other
+-[x] Services work - can communicate with each other
 -[ ] dig works - returns Pub KEY
 -[ ] Encryption works
 
