@@ -17,7 +17,9 @@ services:
 
   kermit:
     build: .
-    command: sleep infinity
+    ports:
+      - "5000:5000"
+    hostname: kermit
     networks:
       - things
     dns:
@@ -25,7 +27,9 @@ services:
 
   piggy:
     build: .
-    command: "sleep infinity"
+    ports:
+      - "5001:5000"
+    hostname: piggy
     networks:
       - things
     dns:
@@ -33,12 +37,13 @@ services:
 
   gonzo:
     build: .
-    command: sleep infinity
+    ports:
+      - "5002:5000"
+    hostname: gonzo
     networks:
       - things
     dns:
       - 10.21.0.3
-
 
 networks:
   things:

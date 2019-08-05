@@ -31,30 +31,53 @@ dig @localhost -p 5053 kermit.muppets.things
 
 ## Goal 2 - PingPong
 
--[ ] Setup `things` network
--[ ] Setup resolver to use DNS
--[ ] Setup `kermit` container - ping `piggy.muppet.things`
--[ ] Setup `piggy` container - ping `kermit.muppet.things`
+-[x] Setup `things` network
+-[x] Setup resolver to use DNS
+-[x] Setup `kermit` container - ping `piggy.muppet.things`
+-[x] Setup `piggy` container - ping `kermit.muppet.things`
 
 ### Tests
 
--[ ] `kermit` and `piggy` can ping each other on their `.things` network
+-[x] `kermit` and `piggy` can ping each other on their `.things` network
+
+### Notes
+
+- Needed to change the forwarder settings in bind to use the docker forwarder
+- Needed to disable dnssec (Hmmm - that feels wrong)
 
 
-## Goal 3 - Certs in DNS
+## Goal 3.1 - Public keys in DNS
 
--[ ] Add cert for root CA into root zone
--[ ] Add intermediate CA into `.muppet.things` zone
+-[ ] Basic webserivce setup
+-[ ] Messages between services using `ns1`
+-[ ] Add public keys to zone file
+-[ ] Fetch public keys using python and DNS lookup
+-[ ] Encrypt message payload to destination
+-[ ] Decrypt at destination
+
+### Tests
+-[ ] Services work - can communicate with each other
+-[ ] dig works - returns Pub KEY
+-[ ] Encryption works
+
+### Notes
+
+
+## Goal 3.2 - Certs in DNS, signed messages
+
+-[ ] Add signing intermediate CA into `.muppet.things` zone
 -[ ] Add certs signed by `muppet.things` IC to `piggy` and `kermit` zones
 -[ ] Add private keys to `kermit` and `piggy` containers
 -[ ] Signed message from `piggy` - verify `kermit` can verify the message using cert in DNS.
 -[ ] Encrypted reply to `piggy` - verify `kermit` can encrypt a message using cert and `piggy` can decrypt it using private key.
 
 ### Tests
--[ ] dig works - returns CDATA
+-[ ] dig works - returns CERT
 -[ ] Can verify certificate chain
 -[ ] Signing works
 -[ ] Encryption works
+
+### Notes
 
 
 ## Goal 4 - Revoking additional party
@@ -65,3 +88,7 @@ dig @localhost -p 5053 kermit.muppets.things
 -[ ] Verify `gonzo` signed requests are flagged as unverified by `piggy` and `kermit`
 -[ ] Verify `piggy` and `kermit` cannot create a message for `gonzo` using `gonzo`'s cert
 
+### Tests
+
+-[ ] Revoked party cannot verify comms with remaining members
+-[ ] Revoked party comms are flagged as unsigned and not trusted
