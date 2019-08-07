@@ -12,15 +12,16 @@
 ### Tests
 - [x] dig works - returns CDATA
 
-in `docker exec -it bind`:
-```
-dig @localhost kermit.muppets.things
-```
+    in `docker exec -it bind`:
+    ```
+    dig @localhost kermit.muppets.things
+    ```
 
-in bash
-```
-dig @localhost -p 5053 kermit.muppets.things
-```
+    in bash
+    ```
+    dig @localhost -p 5053 kermit.muppets.things
+    ```
+
 
 ### Notes
 
@@ -51,6 +52,7 @@ dig @localhost -p 5053 kermit.muppets.things
 - [x] Basic webservice setup
 - [x] Messages between services using `ns1`
 - [ ] Add public keys to zone file
+- [ ] Add private keys to `kermit` and `piggy` containers
 - [ ] Fetch public keys using python and DNS lookup
 - [ ] Encrypt message payload to destination
 - [ ] Decrypt at destination
@@ -60,6 +62,7 @@ dig @localhost -p 5053 kermit.muppets.things
 - [ ] dig works - returns Pub KEY
 - [ ] Encryption works
 
+
 ### Notes
 
 
@@ -67,7 +70,6 @@ dig @localhost -p 5053 kermit.muppets.things
 
 - [ ] Add signing intermediate CA into `.muppet.things` zone
 - [ ] Add certs signed by `muppet.things` IC to `piggy` and `kermit` zones
-- [ ] Add private keys to `kermit` and `piggy` containers
 - [ ] Signed message from `piggy` - verify `kermit` can verify the message using cert in DNS.
 - [ ] Encrypted reply to `piggy` - verify `kermit` can encrypt a message using cert and `piggy` can decrypt it using private key.
 
