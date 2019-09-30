@@ -1,6 +1,19 @@
 # bind-docker
 
-## Goal 1 - DNS lookup
+This is an experiment to learn more about DNS, and to setup a trial environment.  Goals are:
+
+1.  To setup a DNS server providing a private zone.
+2.  Use the DNS server as a Public Key Infrastructure provider.
+3.  Use the DNS server as a self-signed certificate distribution mechanism.
+
+Full experiment is broken down into the steps below.
+
+## Warning
+
+This is for experimental use only!  It is not a suitable for production use.
+
+
+## Step 1 - DNS lookup
 
 - [x] Bind 9 in docker and accessible on port 5053
 - [x] Create master zone `muppet.things`
@@ -30,7 +43,7 @@
 - CNAME records are being recursively looked up - need to look at behaviour when we have some services.
 
 
-## Goal 2 - PingPong
+## Step 2 - PingPong
 
 - [x] Setup `things` network
 - [x] Setup resolver to use DNS
@@ -47,7 +60,7 @@
 - Needed to disable dnssec (Hmmm - that feels wrong)
 
 
-## Goal 3.1 - Public keys in DNS
+## Step 3.1 - Public keys in DNS
 
 - [x] Basic webservice setup
 - [x] Messages between services using `ns1`
@@ -66,7 +79,7 @@
 ### Notes
 
 
-## Goal 3.2 - Certs in DNS, signed messages
+## Step 3.2 - Certs in DNS, signed messages
 
 - [ ] Add signing intermediate CA into `.muppet.things` zone
 - [ ] Add certs signed by `muppet.things` IC to `piggy` and `kermit` zones
@@ -82,7 +95,7 @@
 ### Notes
 
 
-## Goal 4 - Revoking additional party
+## Step 4 - Revoking additional party
 
 - [ ] Add `gonzo` container, with private key and cert in zone file to match configuration of `kermit` and `piggy`
 - [ ] Verify `gonzo` can communicate with `kermit` and `piggy`
